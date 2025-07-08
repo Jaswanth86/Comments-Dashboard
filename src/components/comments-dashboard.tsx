@@ -50,7 +50,8 @@ export function CommentsDashboard({ comments }: CommentsDashboardProps) {
     const lowercasedFilter = searchTerm.toLowerCase();
     return comments.filter(comment =>
       comment.name.toLowerCase().includes(lowercasedFilter) ||
-      comment.email.toLowerCase().includes(lowercasedFilter)
+      comment.email.toLowerCase().includes(lowercasedFilter) ||
+      comment.body.toLowerCase().includes(lowercasedFilter)
     );
   }, [comments, searchTerm]);
 
@@ -126,7 +127,7 @@ export function CommentsDashboard({ comments }: CommentsDashboardProps) {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input
               type="text"
-              placeholder="Search by name or email..."
+              placeholder="Search by name, email, or comment..."
               value={searchTerm}
               onChange={(e) => {
                 setSearchTerm(e.target.value);
@@ -175,6 +176,7 @@ export function CommentsDashboard({ comments }: CommentsDashboardProps) {
                     Email {getSortIcon('email')}
                   </Button>
                 </TableHead>
+                <TableHead>Comment</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -184,11 +186,12 @@ export function CommentsDashboard({ comments }: CommentsDashboardProps) {
                     <TableCell className="text-center">{comment.postId}</TableCell>
                     <TableCell className="font-medium">{comment.name}</TableCell>
                     <TableCell>{comment.email}</TableCell>
+                    <TableCell className="text-sm text-muted-foreground max-w-xs truncate">{comment.body}</TableCell>
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={3} className="h-24 text-center">
+                  <TableCell colSpan={4} className="h-24 text-center">
                     No results found.
                   </TableCell>
                 </TableRow>
