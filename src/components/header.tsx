@@ -12,7 +12,7 @@ export function AppHeader() {
     <header className="bg-card shadow-sm sticky top-0 z-40">
       <div className="container mx-auto flex items-center justify-between p-4">
         <Link href="/" className="text-xl font-bold font-headline text-primary hover:opacity-80 transition-opacity">
-          DataGrid Navigator
+          Comments-Dashboard
         </Link>
         {pathname === "/" ? (
           <Button asChild>
